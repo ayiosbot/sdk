@@ -1,0 +1,18 @@
+# Project place file
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+/include
+/node_modules
+/.VSCodeCounter
+/include
+/out
+/h_old_graveyard
+/.vscode
+
+.env
+sourcemap.json
+package-lock.json
+*.tsbuildinfo
+src/secure/Databases/Secrets.ts

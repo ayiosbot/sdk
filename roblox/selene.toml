@@ -1,0 +1,8 @@
+std = "roblox"
+exclude = [ "out/*" ]
+
+[config]
+empty_if = { comments_count = true }
+
+[rules]
+multiple_statements = "allow"
