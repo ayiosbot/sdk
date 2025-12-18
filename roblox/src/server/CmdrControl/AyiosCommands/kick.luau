@@ -6,19 +6,19 @@
 -- See LICENSE in the project root for license information.
 ---------------------------------------------------------------------------------------------
 return {
-	Name = "ban";
-	Description = "Ban a player from the game.";
+	Name = "kick";
+	Description = "Kick a player from the game.";
 	Group = "DefaultAdmin";
 	Args = {
 		{
-			Type = "playerId";
-			Name = "player";
-			Description = "The player to ban.";
+			Type = "players";
+			Name = "players";
+			Description = "The players to kick.";
 		},
         {
             Type = "string";
             Name = "reason";
-            Description = "The reason for the ban.";
+            Description = "The reason for the kick.";
         }
 	};
 }

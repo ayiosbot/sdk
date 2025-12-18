@@ -6,8 +6,8 @@
 -- See LICENSE in the project root for license information.
 ---------------------------------------------------------------------------------------------
 return {
-	Name = "ban";
-	Description = "Ban a player from the game.";
+	Name = "unban";
+	Description = "Unban a player from the game.";
 	Group = "DefaultAdmin";
 	Args = {
 		{

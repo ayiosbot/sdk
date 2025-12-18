@@ -12,7 +12,7 @@ return function (context, playerId, reason)
     local status, result = AyiosSDK.Moderation:CreateRecord({
         offender_id = playerId,
         moderator_id = context.Executor.UserId,
-        type = AyiosSDK.Moderation.Spec.RecordType.BAN,
+        type = AyiosSDK.Moderation.Spec.RecordType.UNBAN,
         reason = reason,
         place_id = AyiosSDK.Gateway.PLACE_ID,
         attributes = {},

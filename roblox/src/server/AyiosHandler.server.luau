@@ -119,22 +119,21 @@ SDK.Gateway.OnPlayerAction = function(directiveID: string, record: ModerationSpe
         warn('Player has been warned apparently')
     elseif record.type == RecordType.UNBAN then
         --- shouldnt happen but it will prob
-    else
-        if record.type == RecordType.BAN then
-            player:Kick(CreateBanMessage(record))
-        else
-            -- This is basically guaranteed to be KICK at this point
-            local messages = {
-                `You have been kicked by a moderator.`,
-                `Reason: {
-                    if Bitfield.hasBit(record.flags, RecordFlag.IS_REASON_FILTERED) then
-                        record.reason
-                    else
-                        'Roblox failed to filter this message.'
-                }`
-            }
-            player:Kick(messages.concat('\n'))
-        end
+    elseif record.type == RecordType.BAN then
+        player:Kick(CreateBanMessage(record))
+    elseif record.type == RecordType.KICK then
+        warn('kicking player')
+        -- This is basically guaranteed to be KICK at this point
+        local messages = {
+            `You have been kicked by a moderator.`,
+            `Reason: {
+                if Bitfield.hasBit(record.flags, RecordFlag.IS_REASON_FILTERED) then
+                    record.reason
+                else
+                    'Roblox failed to filter this message.'
+            }`
+        }
+        player:Kick(table.concat(messages, '\n'))
     end
 
     SDK.Gateway:ExecuteDirectives({

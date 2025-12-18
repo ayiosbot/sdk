@@ -25,8 +25,6 @@ type PlayerCache = {
 local PLAYER_JOIN_CONNECTION: RBXScriptConnection
 local PLAYER_REMOVE_CONNECTION: RBXScriptConnection
 
-local RecordType = ModerationSpec.RecordType
-local RecordFlag = ModerationSpec.RecordFlag
 
 
 function deepCopy<T>(original: T): T
@@ -161,6 +159,27 @@ function Gateway.BeginProcessing(self: typeof(Gateway))
                 end)
         end
     end)
+
+    game:BindToClose(function()
+        Gateway:Destroy(false)
+        Gateway:DeleteServer(Gateway.JOB_ID):catch(function(err)
+            warn('[AYIOS-SDK] Failed to delete server on shutdown: ' .. tostring(err))
+        end)
+    end)
+end
+
+function Gateway.Destroy(self: typeof(Gateway), doReset: boolean)
+    PLAYER_JOIN_CONNECTION:Disconnect()
+    PLAYER_REMOVE_CONNECTION:Disconnect()
+    Gateway.Cache.Players = {}
+    Gateway.Cache.NewPlayers = {}
+    Gateway.Cache.LeftPlayers = {}
+    Gateway.RequestQueue = {}
+    Gateway.IsProcessingActive = false
+
+    if doReset then
+        Gateway:BeginProcessing()
+    end
 end
 
 function Gateway.CreateServer(self: typeof(Gateway), serverData: Spec.ServerCreateDefinition): Promise<nil>
