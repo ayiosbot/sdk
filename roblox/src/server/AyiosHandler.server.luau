@@ -51,7 +51,8 @@ if game.PlaceId == PRODUCTION_PLACE_ID then
     SDK.Gateway:CreateServer({
         -- created_at = os.time(),
         id = SDK.Gateway.JOB_ID,
-        version = GAME_VERSION
+        version = GAME_VERSION,
+        max_players = Players.MaxPlayers
     }):andThen(function()
         SDK.Gateway:BeginProcessing()
     end)

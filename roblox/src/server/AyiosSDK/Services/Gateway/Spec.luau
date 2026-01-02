@@ -35,12 +35,14 @@ export type Player = {
 export type ServerCreateDefinition = {
     id: string;
     version: string;
+    max_players: number;
     -- created_at: string;
 }
 
 export type ServerDefinition = {
     id: string;
     version: string;
+    max_players: number;
     created_at: string;
     place_id: string;
     players: { [string]: Player };
